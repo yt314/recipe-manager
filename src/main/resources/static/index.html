@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-blobs">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+    </div>
+
+    <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div id="toast-area" class="toast-area"></div>
+
+    <header class="hero">
+        <div class="hero-emoji">🧑‍🍳</div>
+        <h1>Recipe Manager <span class="sparkle">🧁🍰🎂🍪🍩</span></h1>
+        <p class="subtitle">Cook it. Save it. Share it.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="card">
+            <div class="filter-row">
+                <label for="current-user"><span class="ic">🔐</span> Logged in as:</label>
+                <select id="current-user" onchange="setCurrentUser(this.value)">
+                    <option value="">-- nobody (guest) --</option>
+                </select>
+            </div>
+            <p class="subtitle" style="margin:0">An ADMIN can view all recipes; a USER can only view their own.</p>
+        </section>
+
+        <div class="grid">
+            <section class="card form-card">
+                <h2><span class="ic">👤</span> Add Person</h2>
+                <form id="person-form">
+                    <input type="text" id="person-name" placeholder="Name" required>
+                    <input type="email" id="person-email" placeholder="Email">
+                    <input type="text" id="person-phone" placeholder="Phone">
+                    <input type="text" id="person-role" placeholder="Role (optional, default USER)">
+                    <button type="submit">＋ Add Person</button>
+                </form>
+            </section>
+
+            <section class="card form-card">
+                <h2><span class="ic">🍳</span> Add Recipe for a Person</h2>
+                <form id="recipe-form">
+                    <select id="recipe-person" required>
+                        <option value="">-- select a person --</option>
+                    </select>
+                    <input type="text" id="recipe-title" placeholder="Title" required>
+                    <input type="text" id="recipe-description" placeholder="Description">
+                    <input type="text" id="recipe-ingredients" placeholder="Ingredients">
+                    <input type="text" id="recipe-instructions" placeholder="Instructions">
+                    <input type="text" id="recipe-category" placeholder="Category">
+                    <input type="number" id="recipe-prepTime" placeholder="Prep time (minutes)">
+                    <button type="submit">＋ Add Recipe</button>
+                </form>
+            </section>
+        </div>
+
+        <section class="card">
+            <div class="card-head">
+                <h2><span class="ic">🧑‍🤝‍🧑</span> All People</h2>
+                <button class="ghost" onclick="loadPeople()">↻ Refresh</button>
+            </div>
+            <ul id="people-list" class="list"></ul>
+        </section>
+
+        <section class="card">
+            <div class="card-head">
+                <h2><span class="ic">📖</span> All Recipes</h2>
+                <button class="ghost" onclick="loadRecipes()">↻ Refresh</button>
+            </div>
+            <ul id="recipes-list" class="list"></ul>
+        </section>
+
+        <section class="card">
+            <div class="card-head">
+                <h2><span class="ic">🔎</span> Recipes by Person</h2>
+            </div>
+            <div class="filter-row">
+                <select id="filter-person">
+                    <option value="">-- select a person --</option>
+                </select>
+                <button onclick="loadRecipesByPerson()">Show Recipes</button>
+            </div>
+            <ul id="person-recipes-list" class="list"></ul>
+        </section>
+
+    </main>
+
+    <footer class="footer">RIVKY 🧁 YEHUDIT</footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
