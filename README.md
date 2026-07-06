@@ -5,11 +5,12 @@
 ![Maven](https://img.shields.io/badge/build-Maven-C71A36?logo=apachemaven&logoColor=white)
 ![H2](https://img.shields.io/badge/database-H2-blue)
 
-A Spring Boot REST API for managing recipes and the people who own them, with role-based access control, centralized error handling, and AOP-based request logging.
+A Spring Boot REST API — with a small bundled web UI — for managing recipes and the people who own them, featuring role-based access control, centralized error handling, and AOP-based request logging.
 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Screenshots](#screenshots)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
@@ -22,17 +23,24 @@ A Spring Boot REST API for managing recipes and the people who own them, with ro
 
 ## Overview
 
-Recipe Manager is a small, self-contained backend service: each **Person** owns zero or more **Recipes**, and every write to a recipe or a protected endpoint is checked against the requester's role. It's built as a straightforward layered Spring Boot application — controllers, services, repositories — with an H2 file database, so it runs with zero external setup.
+Recipe Manager is a small, self-contained backend service: each **Person** owns zero or more **Recipes**, and every write to a recipe or a protected endpoint is checked against the requester's role. It's built as a straightforward layered Spring Boot application — controllers, services, repositories — with an H2 file database, so it runs with zero external setup. A lightweight static web UI (served from `src/main/resources/static`) is included for exercising the API without a REST client.
+
+## Screenshots
+
+| Home & Add Person | Admin recipe list | Dark mode |
+|:---:|:---:|:---:|
+| ![Home screen](docs/screenshots/hero-light.png) | ![All recipes as admin](docs/screenshots/recipes-admin.png) | ![Dark mode](docs/screenshots/hero-dark.png) |
 
 ## Features
 
-- Full CRUD for **recipes** and **people**
+- Full CRUD for **recipes** and **people**, from both a REST API and a bundled web UI
 - One-to-many relationship between people and their recipes
 - Role-based access control (`ADMIN` / `USER`) enforced via an `X-User-Id` header
 - Cross-cutting request/response logging via a Spring AOP `@Around` aspect on the service layer
 - Centralized exception handling (`@RestControllerAdvice`) producing a consistent JSON error body
 - Persistent, file-based H2 database — data survives restarts
 - Docker & Docker Compose support for one-command startup
+- Light/dark theme toggle in the UI
 
 ## Tech Stack
 
@@ -58,7 +66,7 @@ Recipe Manager is a small, self-contained backend service: each **Person** owns 
 ./mvnw spring-boot:run
 ```
 
-The API starts on `http://localhost:8080`. The H2 database file is created under `./data/` on first run.
+The API and web UI start on `http://localhost:8080`. The H2 database file is created under `./data/` on first run.
 
 ### Run with Docker
 
@@ -211,3 +219,9 @@ src/main/java/com/yr/recipemanager
 ```
 
 Runs the Spring Boot context-load test suite.
+
+## 👩‍💻 Author
+
+Yehudit Pollock
+[GitHub](https://github.com/yt314)
+[Email](mailto:y556780305@gmail.com)
